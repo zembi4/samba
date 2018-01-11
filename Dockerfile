@@ -16,13 +16,15 @@ RUN \
 
 
 # Create samba user as user 'nobody'
-RUN useradd smbuser -o -u 65534 -M
+#RUN useradd smbuser -o -u 65534 -M
 
 
 # Default container settings
 VOLUME ["/etc/samba"]
 VOLUME ["/mnt/share"]
-EXPOSE 137 138 139 445
-ENTRYPOINT ["/init"]
 
-#CMD ["/usr/sbin/smbd", "-FS"]
+# Expose Samba ports
+EXPOSE 137 138 139 445
+
+# Run Samba in the foreground
+CMD ["/usr/sbin/smbd", "-FS"]
