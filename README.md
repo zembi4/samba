@@ -1,4 +1,7 @@
 # samba
-docker image from ubuntu16.04
+docker image from alpine
 
-simple docker image with samba and s6-overlay
+
+Usage with docker swarm
+
+docker stack deploy -c docker-compose.yml "name of service"
