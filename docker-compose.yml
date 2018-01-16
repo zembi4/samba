@@ -1,53 +1,13 @@
 version: '3.3'
 
 services:
-
-  pgsql:
-    image: gmist/postgrespro-1c:8Gb
-    volumes:
-      - /SSD/1C/db:/data
-#      - /SSD/1C/db:/var/lib/postgresql/9.6/main
-#      - /SSD/1C/srv/run/postgresql:/run/postgresql
-#      - /SSD/1C/srv/var/lib/postgresql:/var/lib/postgresql
-      - /etc/localtime:/etc/localtime:ro
-    environment:
-     - DEBUG=true
-     - DB_USER=byh-byh
-     - DB_PASS=1AbrakadabrA123
-     - PG_PASSWORD=1AbrakadabrA123
-     - PG_TRUST_LOCALNET=true
-    networks:
-     - outside
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-
-  srv1c:
-    image: zembi4/1c-server:8.3.10-2667
-    volumes:
-      - /SSD/1C/srv/lic/licenses:/var/1C/licenses
-#      - /SSD/1C/shared:/mnt/shared
-      - /SSD/1C/SMB/share:/mnt/shared
-      - /SSD/1C/srv/home/usr1cv8:/home/usr1cv8
-      - /SSD/1C/srv/logs:/var/log/1C
-      - /etc/localtime:/etc/localtime:ro
-    networks:
-      - outside
-    deploy:
-      replicas: 1
-      restart_policy:
-        condition: on-failure
-
   samba:
-    image: zembi4/samba:vim
-#####samba container root 1AbrakadabrA123#####
-#    image: vimagick/samba
+    image: zembi4/samba:alpine
     stdin_open: true
     tty: true
     volumes:
-    - /SSD/1C/SMB/conf/smb.conf:/etc/samba/smb.conf
-    - /SSD/1C/SMB/share:/share
+    - ./conf/smb.conf:/etc/samba/smb.conf
+    - ./share:/share
     - /etc/localtime:/etc/localtime:ro
     networks:
       - outside
@@ -63,6 +23,6 @@ networks:
       name: "host"
 ######################################usefull commands###########################################
 
-
-#####docker stack deploy -c docker-compose.yml 1C
+#####swarm mode#####
+#####docker stack deploy -c docker-compose.yml SMB
 
