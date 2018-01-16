@@ -1,6 +1,6 @@
 
 FROM alpine:3.6
-MAINTAINER kev <zembi4087@gmail.com>
+MAINTAINER <zembi4087@gmail.com>
 
 RUN apk add --no-cache samba-common-tools samba-server
 
