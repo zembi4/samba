@@ -1,4 +1,3 @@
-
 FROM alpine:3.6
 MAINTAINER <zembi4087@gmail.com>
 
