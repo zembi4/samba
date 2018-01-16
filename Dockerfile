@@ -4,7 +4,7 @@ MAINTAINER <zembi4087@gmail.com>
 
 RUN apk add --no-cache samba-common-tools samba-server
 
-COPY ./data/smb.conf /etc/samba/
+#COPY ./data/smb.conf /etc/samba/
 
 VOLUME /etc/samba \
        /var/lib/samba
